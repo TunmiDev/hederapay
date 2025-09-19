@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-6 text-center">
       {/* Logo as H1 */}
-      <h1 className="mb-8">
+      <h1 className="mt-2">
         <img
           src={logo}
           alt="HederaPay"
@@ -14,7 +14,7 @@ function App() {
       </h1>
 
       {/* Tagline */}
-      <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mb-10 leading-relaxed">
+      <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mb-6  leading-relaxed">
         Simplifying payments across Africa with secure, fast, and affordable
         Web3 technology powered by{" "}
         <span className="text-purple-400 font-semibold">Hedera</span>.
