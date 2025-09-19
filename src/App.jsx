@@ -1,35 +1,32 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import React from "react";
+import logo from "./assets/hederapay-logo.png"; // <-- place your logo here
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <h1 class="text-3xl font-bold underline">Hello world!</h1>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-6">
+      {/* Logo */}
+      <img
+        src={logo}
+        alt="HederaPay Logo"
+        className="w-32 h-32 mb-6 drop-shadow-lg"
+      />
+
+      {/* Title */}
+      <h1 className="text-4xl md:text-6xl font-bold text-center mb-4">
+        HederaPay
+      </h1>
+
+      {/* Tagline */}
+      <p className="text-lg md:text-xl text-gray-300 text-center max-w-2xl mb-8">
+        Simplifying payments across Africa with secure, fast, and affordable
+        Web3 technology powered by Hedera.
       </p>
-    </>
+
+      {/* Call to Action */}
+      <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition">
+        Get Started
+      </button>
+    </div>
   );
 }
 
