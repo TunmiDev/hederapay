@@ -15,7 +15,7 @@ function HowItWorks() {
       </Link>
 
       {/* Page Title */}
-      <h1 className="text-3xl md:text-4xl font-bold mb-8 text-purple-400">
+      <h1 className="text-3xl md:text-4xl font-bold mb-8 text-purple-400 text-center">
         How HederaPay Works
       </h1>
 
@@ -48,6 +48,16 @@ function HowItWorks() {
             Confirm the transaction and verify it instantly on Hedera Explorer.
           </p>
         </div>
+      </div>
+
+      {/* CTA Button */}
+      <div className="flex flex-col gap-4 mt-10">
+        <Link
+          to="/payments"
+          className="px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white text-lg font-semibold rounded-2xl shadow-lg hover:scale-110 transition-transform duration-300"
+        >
+          Connect Wallet
+        </Link>
       </div>
     </div>
   );
