@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import logo from "./assets/HederaPay.png";
+import HowItWorks from "./HowItWorks";
 
-function App() {
+function Home() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-6 text-center">
-      {/* Logo + Title */}
+      {/* Logo as H1 */}
       <h1 className="mt-2 flex items-center gap-3">
         <img
           src={logo}
@@ -24,13 +25,29 @@ function App() {
         <span className="text-purple-400 font-semibold">Hedera</span>.
       </p>
 
-      {/* Call to Action */}
-      <Link to="/payments">
+      {/* CTA Buttons */}
+      <div className="flex flex-col gap-4">
         <button className="px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white text-lg font-semibold rounded-2xl shadow-lg hover:scale-110 transition-transform duration-300">
-          Get Started
+          Connect Wallet
         </button>
-      </Link>
+
+        <Link
+          to="/how-it-works"
+          className="px-10 py-3 border border-purple-500 text-purple-400 rounded-2xl hover:bg-purple-500 hover:text-white transition duration-300"
+        >
+          How it Works
+        </Link>
+      </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/how-it-works" element={<HowItWorks />} />
+    </Routes>
   );
 }
 
