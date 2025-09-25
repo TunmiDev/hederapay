@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import logo from "./assets/HederaPay.png";
 import HowItWorks from "./HowItWorks";
+import Payments from "./Payments";
 
 function Home() {
   return (
@@ -27,9 +28,12 @@ function Home() {
 
       {/* CTA Buttons */}
       <div className="flex flex-col gap-4">
-        <button className="px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white text-lg font-semibold rounded-2xl shadow-lg hover:scale-110 transition-transform duration-300">
+        <Link
+          to="/payments"
+          className="px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white text-lg font-semibold rounded-2xl shadow-lg hover:scale-110 transition-transform duration-300"
+        >
           Connect Wallet
-        </button>
+        </Link>
 
         <Link
           to="/how-it-works"
@@ -47,6 +51,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/how-it-works" element={<HowItWorks />} />
+      <Route path="/payments" element={<Payments />} />
     </Routes>
   );
 }
