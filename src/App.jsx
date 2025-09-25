@@ -1,16 +1,19 @@
 import React from "react";
-import logo from "./assets/hederapay-logo.png"; // <-- place your logo here
+import logo from "./assets/HederaPay.png";
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-6 text-center">
       {/* Logo as H1 */}
-      <h1 className="mt-2">
+      <h1 className="mt-2 flex items-center gap-3">
         <img
           src={logo}
-          alt="HederaPay"
-          className="w-48 h-48 md:w-64 md:h-64 drop-shadow-2xl mx-auto"
+          alt="HederaPay logo"
+          className="w-16 h-16 md:w-16 md:h-20"
         />
+        <span className="text-3xl md:text-4xl font-bold text-white">
+          ederaPay
+        </span>
       </h1>
 
       {/* Tagline */}
