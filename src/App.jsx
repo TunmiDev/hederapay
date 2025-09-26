@@ -3,6 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import logo from "./assets/HederaPay.png";
 import HowItWorks from "./HowItWorks";
 import Payments from "./Payments";
+import Footer from "./Footer";
 
 function Home() {
   return (
