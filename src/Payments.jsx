@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Payments = () => {
   const [hashConnect, setHashConnect] = useState(null);
-  const [walletData, setWalletData] = useState(null);
+  const [pairingString, setPairingString] = useState(null);
   const [accountId, setAccountId] = useState("");
   const [recipient, setRecipient] = useState("");
   const [amount, setAmount] = useState("");
@@ -14,27 +14,46 @@ const Payments = () => {
   // Initialize HashConnect
   useEffect(() => {
     const initHashConnect = async () => {
-      const hashConnectInstance = new HashConnect();
-      const appMetadata = {
-        name: "HederaPay Demo",
-        description: "Demo payments app for Hedera Hackathon",
-        icon: "https://hederapay.com/logo.png", // optional
-      };
-      const network = "testnet"; // For demo purposes
-      const initData = await hashConnectInstance.init(appMetadata, network);
-      setHashConnect(hashConnectInstance);
+      try {
+        console.log("🔄 Initializing HashConnect...");
+        const hc = new HashConnect(true); // enable debug logs
+        setHashConnect(hc);
+
+        const appMetadata = {
+          name: "HederaPay Demo",
+          description: "Demo payments app for Hedera Hackathon",
+          icon: "https://hederapay.com/logo.png",
+        };
+
+        // ✅ FIX: only two params (metadata, "testnet")
+        const initData = await hc.init(appMetadata, "testnet");
+        console.log("✅ HashConnect initData:", initData);
+
+        setPairingString(initData.pairingString);
+
+        // Handle pairing event
+        hc.pairingEvent.on((pairingInfo) => {
+          console.log("🎉 Wallet paired:", pairingInfo);
+          if (pairingInfo && pairingInfo.accountIds?.length > 0) {
+            setAccountId(pairingInfo.accountIds[0]);
+          }
+        });
+      } catch (err) {
+        console.error("❌ Init failed:", err);
+      }
     };
+
     initHashConnect();
   }, []);
 
   // Connect Wallet
   const connectWallet = async () => {
-    if (!hashConnect) return;
-    const pairingData = await hashConnect.connect();
-    setWalletData(pairingData);
-    if (pairingData.accounts && pairingData.accounts.length > 0) {
-      setAccountId(pairingData.accounts[0].accountId);
+    if (!hashConnect || !pairingString) {
+      console.warn("⚠️ HashConnect not ready yet.");
+      return;
     }
+    console.log("🔗 Connecting to wallet...");
+    await hashConnect.connectToLocalWallet(pairingString);
   };
 
   // Simulate sending transaction
@@ -44,7 +63,6 @@ const Payments = () => {
       return;
     }
 
-    // Demo: pretend transaction is sent
     setTxStatus(`Transaction of ${amount} HBAR to ${recipient} sent!`);
     setRecipient("");
     setAmount("");
